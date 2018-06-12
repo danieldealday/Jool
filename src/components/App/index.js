@@ -1,20 +1,81 @@
-import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { BrowserRouter as Router } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import { CssBaseline } from "@material-ui/core";
-import NavBar from "../NavBar";
-import { Home, Schedule, Calendar, Contacts } from '../Views';
+import {
+  CssBaseline,
+  AppBar,
+  Divider,
+  Drawer,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 
-const App = () => (
-  <Router>
-    <Fragment>
-      <CssBaseline />
-      <NavBar />
-      <Route exact path="/" component={Home} />
-      <Route path="/schedule" component={Schedule} />
-      <Route path="/calendar" component={Calendar} />
-      <Route path="/contacts" component={Contacts} />
-    </Fragment>
-  </Router>
-);
-export default withStyles()(App);
+const drawerWidth = 240;
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    zIndex: 1,
+    overflow: "hidden",
+    position: "relative",
+    display: "flex"
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1
+  },
+  drawerPaper: {
+    position: "relative",
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+    minWidth: 0 // So the Typography noWrap works
+  },
+  toolbar: theme.mixins.toolbar
+});
+
+function App(props) {
+  const { classes } = props;
+
+  return (
+    <Router>
+      <Fragment>
+        <CssBaseline />
+        <div className={classes.root}>
+          <AppBar position="absolute" className={classes.appBar}>
+            <Toolbar>
+              <Typography variant="title" color="inherit" noWrap>
+                Jool
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper
+            }}
+          >
+            <div className={classes.toolbar} />
+            <Typography variant="text">
+              Menu Item
+            </Typography>
+
+          </Drawer>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Typography noWrap>stuff</Typography>
+          </main>
+        </div>
+      </Fragment>
+    </Router>
+  );
+}
+
+App.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(App);
