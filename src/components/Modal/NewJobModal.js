@@ -44,7 +44,7 @@ class NewJobModal extends React.Component {
           <ListItemIcon>
             <NewIcon />
           </ListItemIcon>
-          <ListItemText primary="Jobs" />
+          <ListItemText primary="New" />
         </ListItem>
 
         <Modal
