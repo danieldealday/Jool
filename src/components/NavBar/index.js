@@ -1,18 +1,49 @@
 import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import {
+  Schedule as ScheduleIcon,
+  Contacts as ContactsIcon,
+  Work as JobsIcon
+} from "@material-ui/icons";
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider
+} from "@material-ui/core";
+import {NewJobModal} from "../Modal";
 
-
+// TODO: create mapped return from object for components
 
 const NavBar = () => (
   <Fragment>
-    <AppBar position="absolute" color="primary" className="classes.topBar">
-      <Toolbar>
-        <Typography variant="title" color="inherit">
-          Jool
-        </Typography>
-      </Toolbar>
-    </AppBar>
+    <NewJobModal />
+    <Divider />
+    <Link to="/jobs">
+      <ListItem button>
+        <ListItemIcon>
+          <JobsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Jobs" />
+      </ListItem>
+    </Link>
+    <Link to="/contacts">
+      <ListItem button>
+        <ListItemIcon>
+          <ContactsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Contacts" />
+      </ListItem>
+    </Link>
+    <Link to="/schedule">
+      <ListItem button>
+        <ListItemIcon>
+          <ScheduleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Schedule" />
+      </ListItem>
+    </Link>
   </Fragment>
 );
 

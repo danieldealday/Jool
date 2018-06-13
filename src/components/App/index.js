@@ -1,15 +1,17 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import {
   CssBaseline,
   AppBar,
-  Divider,
   Drawer,
   Toolbar,
   Typography,
+  List
 } from "@material-ui/core";
+import NavBar from "../NavBar";
+import { Home, Contacts, Jobs, Schedule } from "../Views";
 
 const drawerWidth = 240;
 
@@ -52,21 +54,18 @@ function App(props) {
               </Typography>
             </Toolbar>
           </AppBar>
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper
-            }}
-          >
+          <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
             <div className={classes.toolbar} />
-            <Typography variant="text">
-              Menu Item
-            </Typography>
-
+            <List>
+              <NavBar />
+            </List>
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Typography noWrap>stuff</Typography>
+            <Route exact path="/" component={Home} />
+            <Route path="/jobs" component={Jobs} />
+            <Route path="/contacts" component={Contacts} />
+            <Route path="/schedule" component={Schedule} />
           </main>
         </div>
       </Fragment>
