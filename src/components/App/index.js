@@ -67,7 +67,8 @@ function App(props) {
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Route exact path="/" component={Home} />
+            {/* ! Change component back to Home */}
+            <Route exact path="/" component={Jobs} />
             <Route path="/jobs" component={Jobs} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/schedule" component={Schedule} />
