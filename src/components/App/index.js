@@ -13,7 +13,7 @@ import {
 import NavBar from "../NavBar";
 import { Home, Contacts, Jobs, Schedule } from "../Views";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
@@ -36,7 +36,12 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     minWidth: 0 // So the Typography noWrap works
   },
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  themeFont: {
+    fontFamily: "'Bree Serif', serif",
+    fontWeight: 'bold',
+    fontSize: '2.5em'
+  }
 });
 
 function App(props) {
@@ -49,7 +54,7 @@ function App(props) {
         <div className={classes.root}>
           <AppBar position="absolute" className={classes.appBar}>
             <Toolbar>
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography variant="title" color="inherit" noWrap className={classes.themeFont}>
                 Jool
               </Typography>
             </Toolbar>
