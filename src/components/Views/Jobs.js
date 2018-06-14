@@ -6,7 +6,7 @@ import Job from "../Job";
 const Jobs = () => {
   return (
     <Consumer>
-      {({ state, actions }) => {
+      {({state}) => {
         // * state.get('stringPropertyName') retrieves property of immutable <Map>
         // *  .map() is an integratted map method to the <List> data structure
         return (
