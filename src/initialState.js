@@ -1,8 +1,8 @@
-// import { Map, List } from "immutable";
+import { Map, List } from "immutable";
 
-const initialState = {
-  jobList: [
-    {
+const initialState = new Map ({
+  jobList: new List ([
+    new Map ({
       created: Date.now(),
       lasteEditted: this.created,
       interviewStatus: "Active",
@@ -10,8 +10,8 @@ const initialState = {
       companyName: "Google",
       jobTitle: "Software Engineer",
       salaryRate: 80000
-    }
-  ]
-}
+    })
+  ])
+});
 
 export default initialState;

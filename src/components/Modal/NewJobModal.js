@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import { Add as NewIcon } from "@material-ui/icons";
 import {
@@ -7,7 +8,11 @@ import {
   Typography,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment
 } from "@material-ui/core";
 
 const styles = theme => ({
@@ -17,9 +22,21 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing.unit * 4,
-    top: `50%`,
-    left: `50%`,
-    transform: `translate(-50%, 50%)`
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  formControl: {
+    margin: theme.spacing.unit
+  },
+  margin: {
+    margin: theme.spacing.unit
+  },
+  withoutLabel: {
+    marginTop: theme.spacing.unit * 3
+  },
+  textField: {
+    flexBasis: 200
   }
 });
 
@@ -57,9 +74,31 @@ class NewJobModal extends React.Component {
             <Typography variant="title" id="modal-title">
               Add A New Job
             </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
-              New Job Form Control Here
-            </Typography>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="company">Company</InputLabel>
+              <Input id="company" />
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="job-title">Job Title</InputLabel>
+              <Input id="job-title" />
+            </FormControl>
+            <FormControl
+              fullWidth
+              className={classNames(
+                classes.margin,
+                classes.withoutLabel,
+                classes.textField,
+                classes.formControl
+              )}
+            >
+              <InputLabel htmlFor="salary-rate">Salary Rate</InputLabel>
+              <Input
+                id="salary-rate"
+                startAdornment={
+                  <InputAdornment position="start">$</InputAdornment>
+                }
+              />
+            </FormControl>
           </div>
         </Modal>
       </div>

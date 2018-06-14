@@ -12,15 +12,14 @@ const styles = theme => ({
 });
 
 const Job = props => {
-  const { classes, data } = props;
+  const { classes } = props;
   const {
     interviewStatus,
     interviewDate,
     companyName,
     jobTitle,
     salaryRate
-  } = props.data;
-  console.log("RECEIVED KEY: ", data.created);
+  } = props.data.toObject();
   return (
     <Fragment>
       <Paper className={classes.root} elevation={1}>

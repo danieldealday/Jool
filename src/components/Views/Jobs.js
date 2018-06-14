@@ -4,15 +4,16 @@ import { Consumer } from "../../Context";
 import Job from "../Job";
 
 const Jobs = () => {
-  // * state is transformed deeply to JavaScript from immutable Map
   return (
     <Consumer>
       {({ state, actions }) => {
+        // * state.get('stringPropertyName') retrieves property of immutable <Map>
+        // *  .map() is an integratted map method to the <List> data structure
         return (
           <Fragment>
             <Typography variant="display1">Jobs</Typography>
-            {state.jobList.map((x) => (
-              <Job data={x} key={x.created}/>
+            {state.get('jobList').map((x) => (
+              <Job data={x} key={x.toJS().created}/>
             ))}
           </Fragment>
         );
