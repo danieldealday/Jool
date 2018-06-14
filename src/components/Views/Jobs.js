@@ -8,12 +8,12 @@ const Jobs = () => {
   return (
     <Consumer>
       {({ state, actions }) => {
-        const appdata = state.toJS();
         return (
           <Fragment>
             <Typography variant="display1">Jobs</Typography>
-            <Job />
-            <Typography variant="body1">{JSON.stringify(appdata)}</Typography>
+            {state.jobList.map((x) => (
+              <Job data={x} key={x.created}/>
+            ))}
           </Fragment>
         );
       }}

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, Grid } from "@material-ui/core";
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -12,15 +12,37 @@ const styles = theme => ({
 });
 
 const Job = props => {
-  const { classes } = props;
+  const { classes, data } = props;
+  const {
+    interviewStatus,
+    interviewDate,
+    companyName,
+    jobTitle,
+    salaryRate
+  } = props.data;
+  console.log("RECEIVED KEY: ", data.created);
   return (
-    <div>
+    <Fragment>
       <Paper className={classes.root} elevation={1}>
-        <Typography component="p" noWrap>
-          This is a job at Google that you should be applying to.
-        </Typography>
+        <Grid container spacing={40}>
+          <Grid item={3}>
+            <Typography variant="body2">{interviewStatus}</Typography>
+          </Grid>
+          <Grid item={3}>
+            <Typography variant="body2">{interviewDate}</Typography>
+          </Grid>
+          <Grid item={3}>
+            <Typography variant="body2">{companyName}</Typography>
+          </Grid>
+          <Grid item={3}>
+            <Typography variant="body2">{jobTitle}</Typography>
+          </Grid>
+          <Grid item={3}>
+            <Typography variant="body2">{salaryRate}</Typography>
+          </Grid>
+        </Grid>
       </Paper>
-    </div>
+    </Fragment>
   );
 };
 
