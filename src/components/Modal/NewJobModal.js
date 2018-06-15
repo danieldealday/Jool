@@ -120,6 +120,17 @@ class NewJobModal extends Component {
                       }
                     />
                   </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="salaryRate">Job Description</InputLabel>
+                    <Input
+                      id="jobDescription"
+                      name="jobDescription"
+                      multiline
+                      rowsMax="4"
+                      onChange={this.handleChange}
+                    />
+                    
+                  </FormControl>
                   <Divider />
                   <Button
                     variant="contained"
