@@ -23,21 +23,21 @@ const Job = props => {
   return (
     <Fragment>
       <Paper className={classes.root} elevation={1}>
-        <Grid container spacing={40}>
-          <Grid item={3}>
-            <Typography variant="body2">{interviewStatus}</Typography>
+        <Grid container spacing={40} warp="nowrap">
+          <Grid item>
+            <Typography variant="body2" noWrap>{interviewStatus}</Typography>
           </Grid>
-          <Grid item={3}>
-            <Typography variant="body2">{interviewDate}</Typography>
+          <Grid item>
+            <Typography variant="body2" noWrap>{interviewDate}</Typography>
           </Grid>
-          <Grid item={3}>
-            <Typography variant="body2">{companyName}</Typography>
+          <Grid item>
+            <Typography variant="body2" noWrap>{companyName}</Typography>
           </Grid>
-          <Grid item={3}>
-            <Typography variant="body2">{jobTitle}</Typography>
+          <Grid item>
+            <Typography variant="body2" noWrap>{jobTitle}</Typography>
           </Grid>
-          <Grid item={3}>
-            <Typography variant="body2">{salaryRate}</Typography>
+          <Grid item>
+            <Typography variant="body2" noWrap>{salaryRate}</Typography>
           </Grid>
         </Grid>
       </Paper>

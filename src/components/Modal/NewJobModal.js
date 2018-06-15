@@ -13,7 +13,8 @@ import {
   InputLabel,
   Input,
   InputAdornment,
-  Button
+  Button,
+  Paper
 } from "@material-ui/core";
 import { Consumer } from "../../Context";
 import moment from "moment";
@@ -61,7 +62,14 @@ class NewJobModal extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({
+      open: false,
+      interviewStatus: "Active",
+      interviewDate: moment().format("MM/DD/YYYY"),
+      companyName: "",
+      jobTitle: "",
+      salaryRate: ""
+    });
   };
 
   handleChange = e => {
@@ -90,54 +98,57 @@ class NewJobModal extends Component {
                 open={this.state.open}
                 onClose={this.handleClose}
               >
-                <div className={classes.paper}>
-                  <Typography variant="title" id="modal-title">
-                    Add A New Job
-                  </Typography>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="companyName">Company</InputLabel>
-                    <Input
-                      id="companyName"
-                      name="companyName"
-                      onChange={this.handleChange}
-                    />
-                  </FormControl>
-                  <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
-                    <Input
-                      id="jobTitle"
-                      name="jobTitle"
-                      onChange={this.handleChange}
-                    />
-                  </FormControl>
-                  <FormControl
-                    fullWidth
-                    className={classNames(
-                      classes.margin,
-                      classes.withoutLabel,
-                      classes.textField,
-                      classes.formControl
-                    )}
-                  >
-                    <InputLabel htmlFor="salaryRate">Salary Rate</InputLabel>
-                    <Input
-                      id="salaryRate"
-                      name="salaryRate"
-                      onChange={this.handleChange}
-                      startAdornment={
-                        <InputAdornment position="start">$</InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    onClick={() => actions.add_newJob(this.state)}
-                  >
-                    Submit
-                  </Button>
-                </div>
+                  <Paper elevation={4} className={classes.paper}>
+                    <Typography variant="title" id="modal-title">
+                      Add A New Job
+                    </Typography>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel htmlFor="companyName">Company</InputLabel>
+                      <Input
+                        id="companyName"
+                        name="companyName"
+                        onChange={this.handleChange}
+                      />
+                    </FormControl>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
+                      <Input
+                        id="jobTitle"
+                        name="jobTitle"
+                        onChange={this.handleChange}
+                      />
+                    </FormControl>
+                    <FormControl
+                      fullWidth
+                      className={classNames(
+                        classes.margin,
+                        classes.withoutLabel,
+                        classes.textField,
+                        classes.formControl
+                      )}
+                    >
+                      <InputLabel htmlFor="salaryRate">Salary Rate</InputLabel>
+                      <Input
+                        id="salaryRate"
+                        name="salaryRate"
+                        onChange={this.handleChange}
+                        startAdornment={
+                          <InputAdornment position="start">$</InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      onClick={() => {
+                        this.handleClose()
+                        actions.add_newJob(this.state)
+                      }}
+                    >
+                      Submit
+                    </Button>
+                  </Paper>
               </Modal>
             </div>
           );
