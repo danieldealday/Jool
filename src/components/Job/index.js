@@ -19,7 +19,7 @@ const Job = props => {
     companyName,
     jobTitle,
     salaryRate
-  } = props.data.toObject();
+  } = props.data.toJS();
   return (
     <Fragment>
       <Paper className={classes.root} elevation={1}>

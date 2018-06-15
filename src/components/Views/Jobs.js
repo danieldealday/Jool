@@ -6,27 +6,18 @@ import Job from "../Job";
 const Jobs = () => {
   return (
     <Consumer>
-      {({state}) => {
-        // * state.get('stringPropertyName') retrieves property of immutable <Map>
-        // *  .map() is an integratted map method to the <List> data structure
+      {({ state }) => {
         return (
           <Fragment>
             <Typography variant="display1">Jobs</Typography>
-            {state.get('jobList').map((x) => (
-              <Job data={x} key={x.toJS().created}/>
-            ))}
+            {state.jobList.map(x => {
+              return <Job data={x} key={x.toJS().created} />;
+            })}
           </Fragment>
         );
       }}
     </Consumer>
   );
 };
-
-// const Jobs = () => (
-//   <Fragment>
-//     <Typography variant="display1">Jobs</Typography>
-//     <Job />
-//   </Fragment>
-// );
 
 export default Jobs;

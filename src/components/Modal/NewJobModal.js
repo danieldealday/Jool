@@ -48,17 +48,14 @@ const styles = theme => ({
 });
 
 class NewJobModal extends Component {
-  state = 
-  // new Map ( 
-    {
-      open: false,
-      interviewStatus: '',
-      interviewDate:'',
-      companyName: '',
-      jobTitle: '',
-      salaryRate: ''
-    }
-  // )
+  state = {
+    open: false,
+    interviewStatus: "",
+    interviewDate: "",
+    companyName: "",
+    jobTitle: "",
+    salaryRate: ""
+  };
 
   handleOpen = () => {
     this.setState({ open: true });
@@ -68,26 +65,17 @@ class NewJobModal extends Component {
     this.setState({ open: false });
   };
 
-  handleChange = (e) => {
-    console.log(`NAME: ${e.target.name}`, `VALUE: ${e.target.value}`)
+  handleChange = e => {
     const modState = {};
     modState[e.target.name] = e.target.value;
-    console.log(modState);
-    this.setState((prevState, props) => {
-      // return Object.assign(prevState, modState)
-      // // access the previous state
-      // const newState = prevState.set(e.target.name, e.target.value);
-      // // set key on state with value of target
-      // // use new immutable object in setState return
-      // return newState;
-    });
-  }
+    this.setState((prevState, props) => Object.assign(prevState, modState));
+  };
 
   render() {
     const { classes } = this.props;
     return (
       <Consumer>
-        {({actions}) => {
+        {({ actions }) => {
           return (
             <div>
               <ListItem button onClick={this.handleOpen}>
@@ -109,11 +97,19 @@ class NewJobModal extends Component {
                   </Typography>
                   <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="companyName">Company</InputLabel>
-                    <Input id="companyName" name="companyName" onChange={this.handleChange}/>
+                    <Input
+                      id="companyName"
+                      name="companyName"
+                      onChange={this.handleChange}
+                    />
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
-                    <Input id="jobTitle" name="jobTitle" onChange={this.handleChange}/>
+                    <Input
+                      id="jobTitle"
+                      name="jobTitle"
+                      onChange={this.handleChange}
+                    />
                   </FormControl>
                   <FormControl
                     fullWidth
@@ -138,7 +134,7 @@ class NewJobModal extends Component {
                     variant="contained"
                     color="primary"
                     className={classes.button}
-                    onClick={() => actions.add_newJob()}
+                    onClick={() => actions.add_newJob(this.state)}
                   >
                     Submit
                   </Button>
