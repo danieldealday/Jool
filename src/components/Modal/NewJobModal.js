@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import { Add as NewIcon } from "@material-ui/icons";
 import {
@@ -14,7 +13,8 @@ import {
   Input,
   InputAdornment,
   Button,
-  Paper
+  Paper,
+  Divider
 } from "@material-ui/core";
 import { Consumer } from "../../Context";
 import moment from "moment";
@@ -32,15 +32,6 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit
-  },
-  margin: {
-    margin: theme.spacing.unit
-  },
-  withoutLabel: {
-    marginTop: theme.spacing.unit * 3
-  },
-  textField: {
-    flexBasis: 200
   },
   button: {
     margin: theme.spacing.unit
@@ -98,57 +89,50 @@ class NewJobModal extends Component {
                 open={this.state.open}
                 onClose={this.handleClose}
               >
-                  <Paper elevation={4} className={classes.paper}>
-                    <Typography variant="title" id="modal-title">
-                      Add A New Job
-                    </Typography>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel htmlFor="companyName">Company</InputLabel>
-                      <Input
-                        id="companyName"
-                        name="companyName"
-                        onChange={this.handleChange}
-                      />
-                    </FormControl>
-                    <FormControl className={classes.formControl}>
-                      <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
-                      <Input
-                        id="jobTitle"
-                        name="jobTitle"
-                        onChange={this.handleChange}
-                      />
-                    </FormControl>
-                    <FormControl
-                      fullWidth
-                      className={classNames(
-                        classes.margin,
-                        classes.withoutLabel,
-                        classes.textField,
-                        classes.formControl
-                      )}
-                    >
-                      <InputLabel htmlFor="salaryRate">Salary Rate</InputLabel>
-                      <Input
-                        id="salaryRate"
-                        name="salaryRate"
-                        onChange={this.handleChange}
-                        startAdornment={
-                          <InputAdornment position="start">$</InputAdornment>
-                        }
-                      />
-                    </FormControl>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={classes.button}
-                      onClick={() => {
-                        this.handleClose()
-                        actions.add_newJob(this.state)
-                      }}
-                    >
-                      Submit
-                    </Button>
-                  </Paper>
+                <Paper elevation={4} className={classes.paper}>
+                  <Typography variant="title" id="modal-title">
+                    Track New Jool
+                  </Typography>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="companyName">Company</InputLabel>
+                    <Input
+                      id="companyName"
+                      name="companyName"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
+                    <Input
+                      id="jobTitle"
+                      name="jobTitle"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="salaryRate">Salary Rate</InputLabel>
+                    <Input
+                      id="salaryRate"
+                      name="salaryRate"
+                      onChange={this.handleChange}
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                    />
+                  </FormControl>
+                  <Divider />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={() => {
+                      this.handleClose();
+                      actions.add_newJob(this.state);
+                    }}
+                  >
+                    Add
+                  </Button>
+                </Paper>
               </Modal>
             </div>
           );
