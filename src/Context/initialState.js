@@ -1,6 +1,6 @@
 import { Map, List } from "immutable";
 
-const initialState = new Map ({
+const initialState = {
   jobList: new List ([
     new Map ({
       created: Date.now(),
@@ -12,6 +12,6 @@ const initialState = new Map ({
       salaryRate: 80000
     })
   ])
-});
+};
 
 export default initialState;

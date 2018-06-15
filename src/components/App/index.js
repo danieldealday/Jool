@@ -39,8 +39,8 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   themeFont: {
     fontFamily: "'Bree Serif', serif",
-    fontWeight: 'bold',
-    fontSize: '2.5em'
+    fontWeight: "bold",
+    fontSize: "2.5em"
   }
 });
 
@@ -54,7 +54,12 @@ function App(props) {
         <div className={classes.root}>
           <AppBar position="absolute" className={classes.appBar}>
             <Toolbar>
-              <Typography variant="title" color="inherit" noWrap className={classes.themeFont}>
+              <Typography
+                variant="title"
+                color="inherit"
+                noWrap
+                className={classes.themeFont}
+              >
                 Jool
               </Typography>
             </Toolbar>
@@ -67,7 +72,9 @@ function App(props) {
           </Drawer>
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            {/* ! Change component back to Home */}
+            <Typography variant="subheading">
+              Be sure to change component back to Home
+            </Typography>
             <Route exact path="/" component={Jobs} />
             <Route path="/jobs" component={Jobs} />
             <Route path="/contacts" component={Contacts} />
