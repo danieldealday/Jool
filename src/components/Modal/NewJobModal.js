@@ -16,8 +16,7 @@ import {
   Button
 } from "@material-ui/core";
 import { Consumer } from "../../Context";
-import { Map } from "immutable";
-import { Object } from "core-js";
+import moment from "moment";
 
 const styles = theme => ({
   paper: {
@@ -50,8 +49,8 @@ const styles = theme => ({
 class NewJobModal extends Component {
   state = {
     open: false,
-    interviewStatus: "",
-    interviewDate: "",
+    interviewStatus: "Active",
+    interviewDate: moment().format("MM/DD/YYYY"),
     companyName: "",
     jobTitle: "",
     salaryRate: ""

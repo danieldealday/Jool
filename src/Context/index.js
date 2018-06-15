@@ -9,16 +9,9 @@ class Provider extends Component {
   state = initialState;
   actions = {
     add_newJob: data => {
-      this.setState(({jobList}) => {
-        console.log("DATA: ", data);
-        console.log("JOBLIST: ", jobList);
-        return {
-          jobList: jobList.push(new Map(data))
-        }
-      });
-      // this.setState(({data}) => ({
-      //   data: data.update('items', list => list.push(data.get('count')))
-      // }));
+      this.setState(({jobList}) => ({
+        jobList: jobList.push(new Map (data))
+      }))
     }
   };
   render() {
