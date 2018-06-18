@@ -9,7 +9,9 @@ const initialState = {
       interviewDate: "07/04/2018",
       companyName: "Google",
       jobTitle: "Software Engineer",
-      salaryRate: 80000
+      location: "Los Angeles, CA",
+      salaryRate: 80000,
+      jobDescription: "https://www.google.com"
     })
   ])
 };

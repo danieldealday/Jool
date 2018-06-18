@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import classNames from "classnames";
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   ExpansionPanelActions,
   Typography,
-  Chip,
   Button,
   Divider
 } from "@material-ui/core";
@@ -43,16 +41,16 @@ const styles = theme => ({
     flexBases: "66.66%"
   },
   col_8: {
-    flexBasis: '12.5%',
+    flexBasis: "12.5%"
   },
   col_3: {
-    flexBasis: '33.33',
+    flexBasis: "33.33"
   },
   col_4: {
-    flexBasis: '25%',
+    flexBasis: "25%"
   },
   col_2: {
-    flexBasis: '50%',
+    flexBasis: "50%"
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -67,6 +65,7 @@ const styles = theme => ({
   }
 });
 
+// * defaultExpanded is used as attribute for ExpansionPanel
 function Job(props) {
   const { classes } = props;
   const {
@@ -74,54 +73,57 @@ function Job(props) {
     interviewDate,
     companyName,
     jobTitle,
-    salaryRate
+    salaryRate,
+    location,
+    jobDescription
   } = props.data.toJS();
   return (
     <div className={classes.root}>
       <ExpansionPanel defaultExpanded>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <div className={classes.col_8}>
-            <Typography className={classes.heading}>{interviewStatus}</Typography>
+            <Typography variant="button" color="primary">
+              {interviewStatus}
+            </Typography>
           </div>
           <div className={classes.col_8}>
             <Typography className={classes.secondaryHeading}>
               {interviewDate}
             </Typography>
           </div>
-          <div className={classes.col_8}>
+          <div className={classes.col_4}>
             <Typography className={classes.secondaryHeading}>
               {companyName}
             </Typography>
           </div>
-          <div className={classes.col_8}>
+          <div className={classes.col_4}>
             <Typography className={classes.secondaryHeading}>
               {jobTitle}
             </Typography>
           </div>
-          <div className={classes.col_2} />
+          <div className={classes.col_8}>
+            <Typography className={classes.secondaryHeading}>
+              {location}
+            </Typography>
+          </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>
-          <div className={classes.column} />
-          <div className={classes.column_fill}>
+          <div className={classes.d}>
             <Typography variant="headline">{jobTitle}</Typography>
-            <Typography variant="title">{companyName}</Typography>
-            <Typography variant="subheading">{interviewDate}</Typography>
-            <Typography variant="body2">{salaryRate}</Typography>
-          </div>
-          <div className={classNames(classes.column, classes.helper)}>
-            <Typography variant="headline">
-              Select your destination of choice<br />
-              <a href="#sub-labels-and-columns" className={classes.link}>
-                Learn more
-              </a>
+            <Typography variant="title">
+              {companyName} - {location}
             </Typography>
+            <Typography variant="subheading">
+              Upcoming appointment: {interviewDate}
+            </Typography>
+            <Typography variant="body2">Compensation: {salaryRate}</Typography>
+            <Typography variant="body2">Job Description: {jobDescription}</Typography>
           </div>
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
-          <Button size="small" color="primary">
-            Save
+          <Button variant="contained" size="small" color="primary">
+            Edit
           </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
