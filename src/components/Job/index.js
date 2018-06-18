@@ -103,14 +103,13 @@ function Job(props) {
         <ExpansionPanelDetails className={classes.details}>
           <div className={classes.column} />
           <div className={classes.column_fill}>
-            <Chip
-              label="Barbados"
-              className={classes.chip}
-              onDelete={() => {}}
-            />
+            <Typography variant="headline">{jobTitle}</Typography>
+            <Typography variant="title">{companyName}</Typography>
+            <Typography variant="subheading">{interviewDate}</Typography>
+            <Typography variant="body2">{salaryRate}</Typography>
           </div>
           <div className={classNames(classes.column, classes.helper)}>
-            <Typography variant="caption">
+            <Typography variant="headline">
               Select your destination of choice<br />
               <a href="#sub-labels-and-columns" className={classes.link}>
                 Learn more
