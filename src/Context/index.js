@@ -8,7 +8,12 @@ const Consumer = AppContext.Consumer;
 class Provider extends Component {
   state = initialState;
   actions = {
-    add_newJob: data => {
+    add_job: data => {
+      this.setState(({jobList}) => ({
+        jobList: jobList.push(new Map (data))
+      }))
+    },
+    edit_job: data => {
       this.setState(({jobList}) => ({
         jobList: jobList.push(new Map (data))
       }))
