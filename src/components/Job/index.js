@@ -8,7 +8,10 @@ import {
   ExpansionPanelActions,
   Typography,
   Button,
-  Divider
+  Divider,
+  Menu,
+  MenuItem,
+  Input
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -65,11 +68,28 @@ const styles = theme => ({
   }
 });
 
+const statusOptions = ["Applied", "Phone", "Technical", "Offer", "Closed"];
 class Job extends Component {
-  state = this.props.data.toJS();
-  
+  state = {
+    anchorEl: null
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  handleSelect = (e, i) => {
+    console.log(e.currentTarget.name, i);
+    // this.setState({ selectedIndex: index, anchorEl: null });
+  };
+
   render() {
     const { classes } = this.props;
+    const { anchorEl } = this.state;
     const {
       interviewStatus,
       applicationDate,
@@ -80,8 +100,9 @@ class Job extends Component {
       jobDescription,
       nextAppointmentDate
     } = this.props.data.toJS();
-    
+
     // * defaultExpanded is used as attribute for ExpansionPanel
+    // TODO: attach `hidden` attribute in ExpansionPanel Summary to hide
     return (
       <div className={classes.root}>
         <ExpansionPanel defaultExpanded>
@@ -113,14 +134,42 @@ class Job extends Component {
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.col_8}>
+              <Button
+                variant="contained"
+                color="primary"
+                aria-owns={anchorEl ? "simple-menu" : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}
+              >
+                {interviewStatus}
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+              >
+                {statusOptions.map((option, index) => (
+                  <MenuItem
+                    key={option}
+                    disabled={index === 0}
+                    selected={index === this.state.selectedIndex}
+                    onClick={event => this.handleSelect(event, index)}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Menu>
+            </div>
             <div className={classes.details}>
-              <Typography variant="headline">{jobTitle}</Typography>
+              <Typography variant="headline" onClick={this.handleClick}>
+                {jobTitle}
+              </Typography>
               <Typography variant="title">
                 {companyName} - {location}
               </Typography>
-              <Typography variant="body2">
-                ${salaryRate} a year
-              </Typography>
+              <Typography variant="body2">${salaryRate} a year</Typography>
               <br />
               <Typography variant="subheading">
                 Application Date: {applicationDate}
@@ -136,7 +185,12 @@ class Job extends Component {
           </ExpansionPanelDetails>
           <Divider />
           <ExpansionPanelActions>
-            <Button variant="contained" size="small" color="primary">
+            <Button
+              variant="contained"
+              size="small"
+              color="primary"
+              onClick={this.handleOpen}
+            >
               Edit
             </Button>
           </ExpansionPanelActions>
