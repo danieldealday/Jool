@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -65,70 +65,85 @@ const styles = theme => ({
   }
 });
 
-// * defaultExpanded is used as attribute for ExpansionPanel
-function Job(props) {
-  const { classes } = props;
-  const {
-    interviewStatus,
-    interviewDate,
-    companyName,
-    jobTitle,
-    salaryRate,
-    location,
-    jobDescription
-  } = props.data.toJS();
-  return (
-    <div className={classes.root}>
-      <ExpansionPanel defaultExpanded>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <div className={classes.col_8}>
-            <Typography variant="button" color="primary">
-              {interviewStatus}
-            </Typography>
-          </div>
-          <div className={classes.col_8}>
-            <Typography className={classes.secondaryHeading}>
-              {interviewDate}
-            </Typography>
-          </div>
-          <div className={classes.col_4}>
-            <Typography className={classes.secondaryHeading}>
-              {companyName}
-            </Typography>
-          </div>
-          <div className={classes.col_4}>
-            <Typography className={classes.secondaryHeading}>
-              {jobTitle}
-            </Typography>
-          </div>
-          <div className={classes.col_8}>
-            <Typography className={classes.secondaryHeading}>
-              {location}
-            </Typography>
-          </div>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
-          <div className={classes.d}>
-            <Typography variant="headline">{jobTitle}</Typography>
-            <Typography variant="title">
-              {companyName} - {location}
-            </Typography>
-            <Typography variant="subheading">
-              Upcoming appointment: {interviewDate}
-            </Typography>
-            <Typography variant="body2">Compensation: {salaryRate}</Typography>
-            <Typography variant="body2">Job Description: {jobDescription}</Typography>
-          </div>
-        </ExpansionPanelDetails>
-        <Divider />
-        <ExpansionPanelActions>
-          <Button variant="contained" size="small" color="primary">
-            Edit
-          </Button>
-        </ExpansionPanelActions>
-      </ExpansionPanel>
-    </div>
-  );
+class Job extends Component {
+  state = this.props.data.toJS();
+  
+  render() {
+    const { classes } = this.props;
+    const {
+      interviewStatus,
+      applicationDate,
+      companyName,
+      jobTitle,
+      salaryRate,
+      location,
+      jobDescription,
+      nextAppointmentDate
+    } = this.props.data.toJS();
+    
+    // * defaultExpanded is used as attribute for ExpansionPanel
+    return (
+      <div className={classes.root}>
+        <ExpansionPanel defaultExpanded>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <div className={classes.col_8}>
+              <Typography variant="button" color="primary">
+                {interviewStatus}
+              </Typography>
+            </div>
+            <div className={classes.col_8}>
+              <Typography className={classes.secondaryHeading}>
+                {applicationDate}
+              </Typography>
+            </div>
+            <div className={classes.col_4}>
+              <Typography className={classes.secondaryHeading}>
+                {companyName}
+              </Typography>
+            </div>
+            <div className={classes.col_4}>
+              <Typography className={classes.secondaryHeading}>
+                {jobTitle}
+              </Typography>
+            </div>
+            <div className={classes.col_8}>
+              <Typography className={classes.secondaryHeading}>
+                {location}
+              </Typography>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.details}>
+              <Typography variant="headline">{jobTitle}</Typography>
+              <Typography variant="title">
+                {companyName} - {location}
+              </Typography>
+              <Typography variant="body2">
+                ${salaryRate} a year
+              </Typography>
+              <br />
+              <Typography variant="subheading">
+                Application Date: {applicationDate}
+              </Typography>
+              <Typography variant="subheading">
+                Next appointment: {nextAppointmentDate}
+              </Typography>
+              <br />
+              <Typography variant="body2">
+                Job Description: {jobDescription}
+              </Typography>
+            </div>
+          </ExpansionPanelDetails>
+          <Divider />
+          <ExpansionPanelActions>
+            <Button variant="contained" size="small" color="primary">
+              Edit
+            </Button>
+          </ExpansionPanelActions>
+        </ExpansionPanel>
+      </div>
+    );
+  }
 }
 
 Job.propTypes = {

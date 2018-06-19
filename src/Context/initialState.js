@@ -1,12 +1,14 @@
 import { Map, List } from "immutable";
+import moment from "moment";
 
 const initialState = {
-  jobList: new List ([
-    new Map ({
+  jobList: new List([
+    new Map({
       created: Date.now(),
       lasteEditted: this.created,
       interviewStatus: "Active",
-      interviewDate: "07/04/2018",
+      applicationDate: moment().format("MM/DD/YYYY"),
+      nextAppointmentDate: "n/a",
       companyName: "Google",
       jobTitle: "Software Engineer",
       location: "Los Angeles, CA",

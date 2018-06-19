@@ -42,10 +42,11 @@ class NewJobModal extends Component {
   state = {
     open: false,
     interviewStatus: "Active",
-    interviewDate: moment().format("MM/DD/YYYY"),
+    applicationDate: moment().format("MM/DD/YYYY"),
     companyName: "",
     jobTitle: "",
-    salaryRate: ""
+    salaryRate: "",
+    location: ""
   };
 
   handleOpen = () => {
@@ -56,7 +57,7 @@ class NewJobModal extends Component {
     this.setState({
       open: false,
       interviewStatus: "Active",
-      interviewDate: moment().format("MM/DD/YYYY"),
+      applicationDate: moment().format("MM/DD/YYYY"),
       companyName: "",
       jobTitle: "",
       salaryRate: ""
@@ -94,6 +95,14 @@ class NewJobModal extends Component {
                     Track New Jool
                   </Typography>
                   <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
+                    <Input
+                      id="jobTitle"
+                      name="jobTitle"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                  <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="companyName">Company</InputLabel>
                     <Input
                       id="companyName"
@@ -102,10 +111,10 @@ class NewJobModal extends Component {
                     />
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
+                    <InputLabel htmlFor="location">Location</InputLabel>
                     <Input
-                      id="jobTitle"
-                      name="jobTitle"
+                      id="location"
+                      name="location"
                       onChange={this.handleChange}
                     />
                   </FormControl>
@@ -121,7 +130,9 @@ class NewJobModal extends Component {
                     />
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="salaryRate">Job Description</InputLabel>
+                    <InputLabel htmlFor="salaryRate">
+                      Job Description URL
+                    </InputLabel>
                     <Input
                       id="jobDescription"
                       name="jobDescription"
@@ -129,7 +140,6 @@ class NewJobModal extends Component {
                       rowsMax="4"
                       onChange={this.handleChange}
                     />
-                    
                   </FormControl>
                   <Divider />
                   <Button
@@ -138,7 +148,7 @@ class NewJobModal extends Component {
                     className={classes.button}
                     onClick={() => {
                       this.handleClose();
-                      actions.add_newJob(this.state);
+                      actions.add_job(this.state);
                     }}
                   >
                     Add
