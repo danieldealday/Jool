@@ -13,10 +13,13 @@ class Provider extends Component {
         jobList: jobList.push(new Map (data))
       }))
     },
-    edit_job: data => {
+    edit_job: (id, key, value) => {
       this.setState(({jobList}) => ({
-        jobList: jobList.push(new Map (data))
-      }))
+        jobList: jobList.update(
+          jobList.findIndex(item => item.get("created") === id),
+          item => item.set(key, value)
+        )
+      }));
     }
   };
   render() {

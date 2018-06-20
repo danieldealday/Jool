@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Consumer } from "../../Context";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -10,8 +11,7 @@ import {
   Button,
   Divider,
   Menu,
-  MenuItem,
-  Input
+  MenuItem
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
@@ -71,26 +71,27 @@ const styles = theme => ({
 const statusOptions = ["Applied", "Phone", "Technical", "Offer", "Closed"];
 class Job extends Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    selectedIndex: 0
   };
 
-  handleClick = event => {
+  handleOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
+  };
+
+  selectStatus = (event, index) => {
+    this.setState({ selectedIndex: index, anchorEl: null });
   };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
 
-  handleSelect = (e, i) => {
-    console.log(e.currentTarget.name, i);
-    // this.setState({ selectedIndex: index, anchorEl: null });
-  };
-
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
     const {
+      created,
       interviewStatus,
       applicationDate,
       companyName,
@@ -103,99 +104,106 @@ class Job extends Component {
 
     // * defaultExpanded is used as attribute for ExpansionPanel
     // TODO: attach `hidden` attribute in ExpansionPanel Summary to hide
+    console.log("JOB STATE: ", statusOptions[this.state.selectedIndex]);
+
     return (
-      <div className={classes.root}>
-        <ExpansionPanel defaultExpanded>
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <div className={classes.col_8}>
-              <Typography variant="button" color="primary">
-                {interviewStatus}
-              </Typography>
-            </div>
-            <div className={classes.col_8}>
-              <Typography className={classes.secondaryHeading}>
-                {applicationDate}
-              </Typography>
-            </div>
-            <div className={classes.col_4}>
-              <Typography className={classes.secondaryHeading}>
-                {companyName}
-              </Typography>
-            </div>
-            <div className={classes.col_4}>
-              <Typography className={classes.secondaryHeading}>
-                {jobTitle}
-              </Typography>
-            </div>
-            <div className={classes.col_8}>
-              <Typography className={classes.secondaryHeading}>
-                {location}
-              </Typography>
-            </div>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails className={classes.details}>
-            <div className={classes.col_8}>
-              <Button
-                variant="contained"
-                color="primary"
-                aria-owns={anchorEl ? "simple-menu" : null}
-                aria-haspopup="true"
-                onClick={this.handleClick}
-              >
-                {interviewStatus}
-              </Button>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={this.handleClose}
-              >
-                {statusOptions.map((option, index) => (
-                  <MenuItem
-                    key={option}
-                    disabled={index === 0}
-                    selected={index === this.state.selectedIndex}
-                    onClick={event => this.handleSelect(event, index)}
+      <Consumer>
+        {({ state, actions }) => (
+          <div className={classes.root}>
+            <ExpansionPanel defaultExpanded>
+              <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                <div className={classes.col_8}>
+                  <Typography variant="button" color="primary">
+                    {interviewStatus}
+                  </Typography>
+                </div>
+                <div className={classes.col_8}>
+                  <Typography className={classes.secondaryHeading}>
+                    {applicationDate}
+                  </Typography>
+                </div>
+                <div className={classes.col_4}>
+                  <Typography className={classes.secondaryHeading}>
+                    {companyName}
+                  </Typography>
+                </div>
+                <div className={classes.col_4}>
+                  <Typography className={classes.secondaryHeading}>
+                    {jobTitle}
+                  </Typography>
+                </div>
+                <div className={classes.col_8}>
+                  <Typography className={classes.secondaryHeading}>
+                    {location}
+                  </Typography>
+                </div>
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails className={classes.details}>
+                <div className={classes.col_8}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    aria-owns={anchorEl ? "simple-menu" : null}
+                    aria-haspopup="true"
+                    onClick={this.handleOpen}
                   >
-                    {option}
-                  </MenuItem>
-                ))}
-              </Menu>
-            </div>
-            <div className={classes.details}>
-              <Typography variant="headline" onClick={this.handleClick}>
-                {jobTitle}
-              </Typography>
-              <Typography variant="title">
-                {companyName} - {location}
-              </Typography>
-              <Typography variant="body2">${salaryRate} a year</Typography>
-              <br />
-              <Typography variant="subheading">
-                Application Date: {applicationDate}
-              </Typography>
-              <Typography variant="subheading">
-                Next appointment: {nextAppointmentDate}
-              </Typography>
-              <br />
-              <Typography variant="body2">
-                Job Description: {jobDescription}
-              </Typography>
-            </div>
-          </ExpansionPanelDetails>
-          <Divider />
-          <ExpansionPanelActions>
-            <Button
-              variant="contained"
-              size="small"
-              color="primary"
-              onClick={this.handleOpen}
-            >
-              Edit
-            </Button>
-          </ExpansionPanelActions>
-        </ExpansionPanel>
-      </div>
+                    {statusOptions[this.state.selectedIndex]}
+                  </Button>
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={this.handleClose}
+                  >
+                    {statusOptions.map((option, index) => (
+                      <MenuItem
+                        key={option}
+                        selected={index === this.state.selectedIndex}
+                        onClick={(event) => {
+                          this.selectStatus(event, index);
+                          {/* actions.edit_job(created, "interviewStatus", statusOptions[this.state.selectedIndex]); */}
+                        }}
+                      >
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </div>
+                <div className={classes.details}>
+                  <Typography variant="headline" onClick={this.handleClick}>
+                    {jobTitle}
+                  </Typography>
+                  <Typography variant="title">
+                    {companyName} - {location}
+                  </Typography>
+                  <Typography variant="body2">${salaryRate} a year</Typography>
+                  <br />
+                  <Typography variant="subheading">
+                    Application Date: {applicationDate}
+                  </Typography>
+                  <Typography variant="subheading">
+                    Next appointment: {nextAppointmentDate}
+                  </Typography>
+                  <br />
+                  <Typography variant="body2">
+                    Job Description: {jobDescription}
+                  </Typography>
+                </div>
+              </ExpansionPanelDetails>
+              <Divider />
+              <ExpansionPanelActions>
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  onClick={this.handleOpen}
+                >
+                  Edit
+                </Button>
+              </ExpansionPanelActions>
+            </ExpansionPanel>
+          </div>
+        )}
+      </Consumer>
     );
   }
 }

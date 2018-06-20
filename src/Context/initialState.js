@@ -1,8 +1,6 @@
 import { Map, List } from "immutable";
 import moment from "moment";
 
-const status = ['Applied', 'Phone', 'Technical', 'Offer', 'Closed']
-
 const initialState = {
   jobList: new List([
     new Map({
