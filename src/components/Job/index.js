@@ -110,7 +110,7 @@ class Job extends Component {
       <Consumer>
         {({ state, actions }) => (
           <div className={classes.root}>
-            <ExpansionPanel defaultExpanded>
+            <ExpansionPanel>
               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                 <div className={classes.col_8}>
                   <Typography variant="button" color="primary">
@@ -158,9 +158,9 @@ class Job extends Component {
                       <MenuItem
                         key={option}
                         selected={index === this.state.selectedIndex}
-                        onClick={(event) => {
-                          this.selectStatus(event, index);
-                          {/* actions.edit_job(created, "interviewStatus", statusOptions[this.state.selectedIndex]); */}
+                        onClick={async (event) => {
+                          await this.selectStatus(event, index);
+                          actions.edit_job(created, "interviewStatus", statusOptions[this.state.selectedIndex]);
                         }}
                       >
                         {option}
