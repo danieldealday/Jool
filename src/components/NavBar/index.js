@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
   Schedule as ScheduleIcon,
   Contacts as ContactsIcon,
-  Work as JobsIcon
+  Work as JobsIcon,
+  Business as CompaniesIcon
 } from "@material-ui/icons";
 import {
   ListItem,
@@ -42,6 +43,14 @@ const NavBar = () => (
           <ScheduleIcon />
         </ListItemIcon>
         <ListItemText primary="Schedule" />
+      </ListItem>
+    </Link>
+    <Link to="/companies">
+      <ListItem button>
+        <ListItemIcon>
+          <CompaniesIcon />
+        </ListItemIcon>
+        <ListItemText primary="Companies" />
       </ListItem>
     </Link>
   </Fragment>
