@@ -131,7 +131,7 @@ class NewJobModal extends Component {
                   </FormControl>
                   <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="salaryRate">
-                      Job Description URL
+                      Job Posting
                     </InputLabel>
                     <Input
                       id="jobDescription"

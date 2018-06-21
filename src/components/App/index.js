@@ -11,7 +11,7 @@ import {
   List
 } from "@material-ui/core";
 import NavBar from "../NavBar";
-import { Home, Contacts, Jobs, Schedule } from "../Views";
+import { Home, Contacts, Jobs, Schedule, Companies } from "../Views";
 
 const drawerWidth = 300;
 
@@ -76,6 +76,7 @@ function App(props) {
             <Route path="/jobs" component={Jobs} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/schedule" component={Schedule} />
+            <Route path="/companies" component={Companies} />
           </main>
         </div>
       </Fragment>
