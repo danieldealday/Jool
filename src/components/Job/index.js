@@ -105,8 +105,12 @@ class Job extends Component {
       jobTitle,
       salaryRate,
       location,
-      jobDescription,
-      nextAppointmentDate
+      jobURL,
+      nextAppointmentDate,
+      notes,
+      hiringManager,
+      contactEmail,
+      contactPhone
     } = this.props.data.toJS();
 
     // * defaultExpanded is used as attribute for ExpansionPanel
@@ -182,36 +186,42 @@ class Job extends Component {
                 </Menu>
               </div>
               <div className={classNames(classes.col_desc, classes.details)}>
-                <Typography variant="headline" onClick={this.handleClick}>
+                <Typography variant="title" onClick={this.handleClick}>
                   {jobTitle}
                 </Typography>
-                <Typography variant="title">
-                  {companyName}
-                </Typography>
-                <Typography variant="title">
-                  {location}
-                </Typography>
-                <Typography variant="body2">${salaryRate} a year</Typography>
                 <br />
-                <Typography variant="subheading">
-                  Application Date: {applicationDate}
-                </Typography>
-                <Typography variant="subheading">
-                  Next appointment: {nextAppointmentDate}
-                </Typography>
+                <Typography variant="subheading">{companyName}</Typography>
+                <Typography variant="subheading">{location}</Typography>
+                <Typography variant="caption">${salaryRate} a year</Typography>
                 <br />
-                <Typography variant="subheading">Hiring Manager:</Typography>
-                <Typography variant="subheading">n/a</Typography>
-                <Typography variant="subheading">Contact e-mail:</Typography>
-                <Typography variant="subheading">n/a</Typography>
+                <Typography variant="body2">Application Date:</Typography>
+                <Typography vairant="body1">{applicationDate}</Typography>
+                <Typography variant="body2">Next appointment:</Typography>
+                <Typography variant="body1">{nextAppointmentDate}</Typography>
+                <br />
+                <Typography variant="body2">Hiring Manager:</Typography>
+                <Typography variant="body1">{hiringManager}</Typography>
+                <Typography variant="body2">Contact E-mail:</Typography>
+                <Typography variant="body1">{contactEmail}</Typography>
+                <Typography variant="body2">Contact Phone:</Typography>
+                <Typography variant="body1">{contactPhone}</Typography>
               </div>
               <div className={classNames(classes.col_notes, classes.details)}>
-                <TextField multiline fullWidth={true} label="Notes" rows="1" rowsMax="20" margin="normal" />
+                <TextField
+                  multiline
+                  fullWidth={true}
+                  label="Notes"
+                  rows="15"
+                  rowsMax="15"
+                  margin="normal"
+                  placeholder={notes}
+                  autoFocus={true}
+                />
               </div>
             </ExpansionPanelDetails>
             <ExpansionPanelActions>
-              <a href={jobDescription} target="_blank">
-                <Typography>{jobDescription}</Typography>
+              <a href={jobURL} target="_blank">
+                <Typography>{jobURL}</Typography>
               </a>
             </ExpansionPanelActions>
           </ExpansionPanel>

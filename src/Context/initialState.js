@@ -13,16 +13,13 @@ const initialState = {
       jobTitle: "Software Engineer",
       location: "Los Angeles, CA",
       salaryRate: 80000,
-      jobDescription: "https://www.google.com"
+      jobURL: "https://www.google.com",
+      hiringManager: "John Smith",
+      contactEmail: "john.smith@google.com",
+      contactPhone: "(310) 987-4321",
+      notes: "These are some notes."
     })
   ])
 };
-
-// const list = new List([new Map({ daniel: 100 }), new Map({ goku: 9000 })]);
-// const list2 = list.update(
-//   list.findIndex(item => item.get("daniel") === 100),
-//   item => item.set("daniel", "coolest kid around")
-// );
-// console.log(list.toJS(), list2.toJS());
 
 export default initialState;

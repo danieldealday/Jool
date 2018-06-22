@@ -89,6 +89,7 @@ class NewJobModal extends Component {
                 aria-describedby="simple-modal-description"
                 open={this.state.open}
                 onClose={this.handleClose}
+                disableAutoFocus={true}
               >
                 <Paper elevation={4} className={classes.paper}>
                   <Typography variant="title" id="modal-title">
@@ -134,8 +135,8 @@ class NewJobModal extends Component {
                       Job Posting
                     </InputLabel>
                     <Input
-                      id="jobDescription"
-                      name="jobDescription"
+                      id="jobURL"
+                      name="jobURL"
                       multiline
                       rowsMax="4"
                       onChange={this.handleChange}
