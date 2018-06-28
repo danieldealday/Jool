@@ -17,7 +17,7 @@ const initialState = {
       hiringManager: "John Smith",
       contactEmail: "john.smith@google.com",
       contactPhone: "(310) 987-4321",
-      notes: "These are some notes."
+      notes: "Default notes passed from application state."
     })
   ])
 };

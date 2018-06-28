@@ -8,19 +8,22 @@ const Consumer = AppContext.Consumer;
 class Provider extends Component {
   state = initialState;
   actions = {
-    add_job: data => {
+    JOB_ADD: data => {
       this.setState(({jobList}) => ({
         jobList: jobList.push(new Map (data))
       }))
     },
-    edit_job: (id, key, value) => {
-      this.setState(({jobList}) => ({
+    JOB_EDIT: async (id, key, data) => {
+      await this.setState(({jobList}) => ({
         jobList: jobList.update(
           jobList.findIndex(item => item.get("created") === id),
-          item => item.set(key, value)
+          item => item.set(key, data)
         )
       }));
     }
+    // const modState = {};
+    // modState[e.target.name] = e.target.value;
+    // this.setState((prevState, props) => Object.assign(prevState, modState));
   };
   render() {
     return (

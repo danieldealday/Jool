@@ -71,7 +71,9 @@ class Job extends Component {
   state = {
     anchorEl: null,
     selectedIndex: 0,
-    expanded: true
+    expanded: true,
+    notes: "",
+    editted: false
   };
 
   handleOpen = event => {
@@ -84,6 +86,13 @@ class Job extends Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+  };
+
+  handleChange = e => {
+    const modState = {};
+    modState["editted"] = true;
+    modState[e.target.name] = e.target.value;
+    this.setState((prevState, props) => Object.assign(prevState, modState));
   };
 
   togglePanel = () => {
@@ -115,7 +124,6 @@ class Job extends Component {
 
     // * defaultExpanded is used as attribute for ExpansionPanel
     // TODO: attach `hidden` attribute in ExpansionPanel Summary to hide
-    console.log("JOB STATE: ", statusOptions[this.state.selectedIndex]);
 
     return (
       <Consumer>
@@ -173,7 +181,7 @@ class Job extends Component {
                       selected={index === this.state.selectedIndex}
                       onClick={async event => {
                         await this.selectStatus(event, index);
-                        actions.edit_job(
+                        actions.JOB_EDIT(
                           created,
                           "interviewStatus",
                           statusOptions[this.state.selectedIndex]
@@ -207,16 +215,32 @@ class Job extends Component {
                 <Typography variant="body1">{contactPhone}</Typography>
               </div>
               <div className={classNames(classes.col_notes, classes.details)}>
-                <TextField
-                  multiline
-                  fullWidth={true}
-                  label="Notes"
-                  rows="15"
-                  rowsMax="15"
-                  margin="normal"
-                  placeholder={notes}
-                  autoFocus={true}
-                />
+                  <TextField
+                    multiline
+                    fullWidth={true}
+                    label="Notes"
+                    rows="15"
+                    rowsMax="15"
+                    margin="dense"
+                    autoFocus={true}
+                    placeholder={notes}
+                    id="notes"
+                    name="notes"
+                    onChange={this.handleChange}
+                    data-created={created}
+                    defaultValue={notes}
+                  />
+                  <Button
+                  variant="contained"
+                  color="primary"
+                  disabled={!this.state.editted}
+                  onClick={async () => {
+                    await this.setState((prevState, props) => Object.assign(prevState, {editted: false}));
+                    actions.JOB_EDIT(created, "notes", this.state.notes);
+                  }}
+                >
+                  Update
+                </Button>
               </div>
             </ExpansionPanelDetails>
             <ExpansionPanelActions>

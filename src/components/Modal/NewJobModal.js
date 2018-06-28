@@ -131,7 +131,7 @@ class NewJobModal extends Component {
                     />
                   </FormControl>
                   <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="salaryRate">
+                    <InputLabel htmlFor="jobURL">
                       Job Posting
                     </InputLabel>
                     <Input
@@ -149,7 +149,7 @@ class NewJobModal extends Component {
                     className={classes.button}
                     onClick={() => {
                       this.handleClose();
-                      actions.add_job(this.state);
+                      actions.JOB_ADD(this.state);
                     }}
                   >
                     Add
