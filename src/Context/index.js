@@ -21,9 +21,6 @@ class Provider extends Component {
         )
       }));
     }
-    // const modState = {};
-    // modState[e.target.name] = e.target.value;
-    // this.setState((prevState, props) => Object.assign(prevState, modState));
   };
   render() {
     return (
