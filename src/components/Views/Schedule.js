@@ -12,7 +12,6 @@ const Schedule = () => (
         <Fragment>
           <Typography variant="display1">Schedule</Typography>
           <Divider />
-          <DialogEdit />
         </Fragment>
       );
     }}

@@ -16,6 +16,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Object } from "core-js";
+import DialogEdit from '../DialogEdit';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -230,17 +231,8 @@ class Job extends Component {
                     data-created={created}
                     defaultValue={notes}
                   />
-                  <Button
-                  variant="contained"
-                  color="primary"
-                  disabled={!this.state.editted}
-                  onClick={async () => {
-                    await this.setState((prevState, props) => Object.assign(prevState, {editted: false}));
-                    actions.JOB_EDIT(created, "notes", this.state.notes);
-                  }}
-                >
-                  Update
-                </Button>
+                  
+          <DialogEdit />
               </div>
             </ExpansionPanelDetails>
             <ExpansionPanelActions>
