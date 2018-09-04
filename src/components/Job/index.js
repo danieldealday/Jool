@@ -16,7 +16,7 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Object } from "core-js";
-import DialogEdit from '../DialogEdit';
+import DialogEdit from "../DialogEdit";
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -195,6 +195,8 @@ class Job extends Component {
                 </Menu>
               </div>
               <div className={classNames(classes.col_desc, classes.details)}>
+                <DialogEdit />
+                <br />
                 <Typography variant="title" onClick={this.handleClick}>
                   {jobTitle}
                 </Typography>
@@ -216,23 +218,12 @@ class Job extends Component {
                 <Typography variant="body1">{contactPhone}</Typography>
               </div>
               <div className={classNames(classes.col_notes, classes.details)}>
-                  <TextField
-                    multiline
-                    fullWidth={true}
-                    label="Notes"
-                    rows="15"
-                    rowsMax="15"
-                    margin="dense"
-                    autoFocus={true}
-                    placeholder={notes}
-                    id="notes"
-                    name="notes"
-                    onChange={this.handleChange}
-                    data-created={created}
-                    defaultValue={notes}
-                  />
-                  
-          <DialogEdit />
+                <Typography variant="title" gutterBottom>
+                  Notes
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                  {notes}
+                </Typography>
               </div>
             </ExpansionPanelDetails>
             <ExpansionPanelActions>
