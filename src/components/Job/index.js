@@ -11,8 +11,7 @@ import {
   Typography,
   Button,
   Menu,
-  MenuItem,
-  TextField
+  MenuItem
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Object } from "core-js";
