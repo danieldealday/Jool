@@ -194,7 +194,7 @@ class Job extends Component {
                 </Menu>
               </div>
               <div className={classNames(classes.col_desc, classes.details)}>
-                <DialogEdit />
+                <DialogEdit data={this.props.data} />
                 <br />
                 <Typography variant="title" onClick={this.handleClick}>
                   {jobTitle}

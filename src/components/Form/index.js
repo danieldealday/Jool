@@ -3,18 +3,24 @@ import {
   FormControl,
   InputLabel,
   Input,
-  Button
+  Button,
+  Typography
 } from "@material-ui/core";
 
-const Form = () => {
+const Form = (props) => {
+  const data = props.data.toJS();
   return (
     <Fragment>
       <Button>Job Status</Button>
+      <Typography variant="body1">
+        {data.jobTitle}
+      </Typography>
       <FormControl >
         <InputLabel htmlFor="jobTitle">Job Title</InputLabel>
         <Input
           id="jobTitle"
           name="jobTitle"
+          value={data.jobTitle}
         />
       </FormControl>
       <FormControl >

@@ -69,7 +69,7 @@ class FullScreenDialog extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-          <Form />
+          <Form data={this.props.data}/>
         </Dialog>
       </div>
     );
