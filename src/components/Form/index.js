@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 
 const Form = (props) => {
-  const data = props.data.toJS();
+  const data = props.data;
   return (
     <Fragment>
       <Button>Job Status</Button>
